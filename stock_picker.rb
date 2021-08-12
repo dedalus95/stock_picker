@@ -49,59 +49,37 @@ def stock_picker(arr)
 left_operand_index = arr.length - 1
 right_operand_index = arr.length - 1
 array_of_results = []
-
-
 until left_operand_index <= 0 && right_operand_index <= 0
-  
   result = arr[right_operand_index] - arr[left_operand_index]
-
-
   left_operand_index -= 1 
-
-
    @live_array = array_of_results << right_operand_index
    @live_array = array_of_results << left_operand_index + 1
    @live_array = array_of_results << result
-
-  
    if left_operand_index < 0 && left_operand_index < right_operand_index
     right_operand_index -= 1
     left_operand_index = arr.length - 1 
    end
-
-  #  p array_of_results
 end
-
 array_of_arrays_of_results = array_of_results.each_slice(3).to_a
-
 b = array_of_arrays_of_results.select do
   |a| a[1] > a[0]
-
 end
-
 array_without_useless_arrays = array_of_arrays_of_results -  b
-
 c = array_without_useless_arrays.map do
   |a| b = []
   b << a[2]
-
 end
-
-
 c.flatten!
 d = c.max
 e = array_without_useless_arrays.find do
   |n| n[2] == d
   end
-
 e.flatten!
 e.pop
 e.reverse!
 print e
-
 end
-
-array = [44,33,32,55,4,4,44,5,3,2,9,77,77,55,3,33,44,5,5]
+array = [4,5,2,3,5,4,6,45,4,3,54,2,4,22,43,65,4,3,2,3,44,5,4,3,3,4,33,4,55,6]
 stock_picker(array)
 
 
